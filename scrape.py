@@ -2,11 +2,16 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import json 
 
+GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+options = Options()
+options.add_argument('disable-gpu')
+options.add_argument('--no-sandbox')
+options.binary_location = GOOGLE_CHROME_PATH
+browser = webdriver.Chrome(options=options, executable_path=CHROMEDRIVER_PATH)
+
 def scrape():
-    options = Options()
-    options.binary_location = "./google-chrome"
-    options.headless = True
-    browser = webdriver.Chrome(options=options, executable_path='./chromedriver')
+    
     browser.get("https://www.worldometers.info/")
     array0 = browser.find_elements_by_xpath('//span[contains(@class,"counter-item")]')
     array1 = browser.find_elements_by_xpath('//span[@class="rts-counter"][not(contains(@rel, "oil_years")) and not(contains(@rel,"cd_oil_reserves_0"))]')
