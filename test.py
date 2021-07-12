@@ -1,5 +1,5 @@
 import requests
-BASE = "https://murmuring-peak-27971.herokuapp.com/"
+BASE = "http://worldometerlive.kekapi.com/"
 
 response = requests.get(BASE + 'all')
 print(response.json())
